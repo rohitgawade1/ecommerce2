@@ -1,0 +1,33 @@
+.userdatails{
+    padding: 1rem;
+}
+
+h1{
+    margin: 1rem 0;
+}
+
+.gender{
+    margin: 1rem 0;
+}
+
+input{
+    margin-left: 1rem;
+}
+
+td,th{
+    border: 1px solid black;
+    margin: 0;
+    text-align: center;
+    padding: 8px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}

@@ -1,0 +1,39 @@
+.products{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.products-container{
+    border: 1px solid black;
+    height: 100%;
+    width: 90%;
+    display: flex;
+}
+
+.left-container{
+    width: 30%;
+    background-color: black;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: large;
+    cursor: pointer;
+}
+.right-container{
+    padding: 1rem;
+    width: 70%;
+}
+
+.right-container ul{
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
+

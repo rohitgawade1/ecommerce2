@@ -1,0 +1,17 @@
+ul{
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+    padding: 1rem 3rem;
+}
+
+a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.772)
+}
+
+.navbar{
+    background-color: black;
+    position: sticky;
+    top: 0;
+}
