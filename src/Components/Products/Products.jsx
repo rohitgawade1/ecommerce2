@@ -6,16 +6,17 @@ import Navbar from "../Navbar/Navbar";
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const data = useSelector((state) => state.MainData);
+  const maindata = useSelector((state) => state.MainData);
+  // console.log(maindata)
   const categoryData = useSelector(state => state.CategoryData)
-  const eleData = data.filter((ele) => {
+  const eleData = maindata.filter((ele) => {
     return ele.category === 'electronics'
     
   })
   // dispatch({type:'catagoryData', data:eleData})
-
+  
   function fetchApi(e) {
-    const categoryData = data.filter((ele) => {
+    const categoryData = maindata.filter((ele) => {
       return ele.category === e.target.innerText;
     });
     // console.log(categoryData)

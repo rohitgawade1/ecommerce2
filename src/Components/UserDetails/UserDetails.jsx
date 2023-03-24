@@ -7,7 +7,9 @@ const UserDetails = () => {
   const [maleData, setMaleData] = useState([])
   const [femaleData, setFemaleData] = useState([])
   const [gender, setGender] = useState('')
-  const userData = useSelector((state) => state.RandomUserData);
+  const [userDataMain, setUserDataMain] = useState([])
+  let userData = useSelector((state) => state.RandomUserData);
+  // setUserDataMain(userData)
 //   console.log(userData.results);
  
 
@@ -19,6 +21,7 @@ const UserDetails = () => {
             return ele.gender === 'male'
         })
         setMaleData(dataMale)
+        setUserDataMain([])
         // console.log(maleData)
     }
     else if(e.target.value === 'female'){
@@ -26,12 +29,23 @@ const UserDetails = () => {
             return ele.gender === 'female'
         })
         setFemaleData(dataFemale)
+        setUserDataMain([])
         // console.log(maleData)
+    }
+    else if(e.target.value === 'all'){
+      setUserDataMain([])
     }
     
   }
-  console.log(maleData)
-  console.log(femaleData)
+  // console.log(maleData)
+  // console.log(userData)
+  const handleChangeFilter = (e) => {
+  let data =  userData.results.filter((ele) => {
+      return ele.email.includes(e.target.value)
+    })
+    setUserDataMain(data)
+    console.log(userDataMain)
+  }
   return (
     <>
       <Navbar/>
@@ -50,6 +64,7 @@ const UserDetails = () => {
         <input value='all' onChange={handleChange} type="radio" name="gender" /> All
         <input value='male' onChange={handleChange} type="radio" name="gender" /> Male
         <input value='female' onChange={handleChange} type="radio" name="gender" /> Female
+        <input  onChange={handleChangeFilter} type="text" />
       </div>
       <div className="userdetails-container">
         <table className="table">
@@ -59,14 +74,21 @@ const UserDetails = () => {
             <th>Email</th>
             <th>Gender</th>
           </tr>
-          {gender === 'all' || gender === '' ? userData.results && userData.results.map((ele,key) => {
+          {userDataMain.length > 0 ? userDataMain.map((ele) => {
+            return <tr>
+            <td><img src={ele.picture.medium} alt="" /></td>
+            <td>{ele.name.first}</td>
+            <td>{ele.email}</td>
+            <td>{ele.gender}</td>
+          </tr>;
+          }) :(gender === 'all' || gender === '' ? userData.results && userData.results.map((ele,key) => {
            return <tr>
               <td><img src={ele.picture.medium} alt="" /></td>
               <td>{ele.name.first}</td>
               <td>{ele.email}</td>
               <td>{ele.gender}</td>
             </tr>;
-          }): gender === 'male' ? maleData.map((ele,key) => {
+          }) : gender === 'male' ? maleData.map((ele,key) => {
             return <tr>
                <td><img src={ele.picture.medium} alt="" /></td>
                <td>{ele.name.first}</td>
@@ -80,7 +102,7 @@ const UserDetails = () => {
                <td>{ele.email}</td>
                <td>{ele.gender}</td>
              </tr>;
-           }):''}
+           }): '')}
         </table>
       </div>
     </div>

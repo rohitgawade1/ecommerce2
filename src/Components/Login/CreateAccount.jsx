@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CreateAccount.css'
 
 const CreateAccount = () => {
     const navigate = useNavigate()
     const handleDoneBtn = () => {
+      if(pass === pass2){
+
         navigate('/')
+      }
+      else{
+        alert('error')
+      }
     }
+    const [pass, setPass] = useState(null);
+    const [pass2, setPass2] = useState(null);
     const handleEmailInput = (e) => {
         localStorage.setItem('email',e.target.value)
     }
     const handlePassInput = (e) => {
         localStorage.setItem('pass', e.target.value)
+        setPass(e.target.value)
+    }
+    const handleConfirmPass = (e) => {
+        localStorage.setItem('confirmPass',e.target.value);
+        setPass2(e.target.value)
     }
   return (
     <div className="login-container">
@@ -29,7 +42,7 @@ const CreateAccount = () => {
           </div>
           <div style={{margin:'1rem 0'}}>
             <h4>Confirm Password</h4>
-            <input className="password" type="password" />
+            <input onChange={handleConfirmPass} className="password" type="password" />
           </div>
           <div className="btns">
             <button onClick={handleDoneBtn} className="login-btn">Done</button>

@@ -15,9 +15,11 @@ const Login = () => {
         setPass(e.target.value)
     }
 
+
     const handleLoginBtn = () => {
         const email = localStorage.getItem('email')
         const pass = localStorage.getItem('pass')
+        // const getConfirmPass = localStorage.getItem('confirmPass')
         if(email === emaile && pass === passe){
             navigate('/home')
         }
